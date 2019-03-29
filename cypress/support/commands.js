@@ -59,12 +59,16 @@ Cypress.Commands.add("loginLocallyManually", ()=>{
   cy.url().should('match',/welcome\.jsp/);
 });
 
+Cypress.Commands.add("signIn", (username, password)=>{
+  cy.get('input[id="username"]').type("mark.fisher3");
+  cy.get('input[id="password"]').type("PPython@@@3");
+  cy.get('input').contains("Sign in").click();
+});
+
 Cypress.Commands.add("login", (username, password)=>{
-  if(Cypress.config().baseUrl==="https://www.flukebook.org/" || Cypress.config().baseUrl==="https://www.whaleshark.org/"){
-    cy.loginProgrammatically(username, password);
-  } else{
-    cy.loginProgrammaticallyLocally(username, password);
-  }
+  cy.get('input[id="username"]').type("mark.fisher3");
+  cy.get('input[id="password"]').type("PPython@@@3");
+  cy.get('input').contains("LOGIN").click();
 });
 
 Cypress.Commands.add("loginProgrammaticallyLocally", (username, password) => {
